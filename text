@@ -1,0 +1,6 @@
+back y front
+tenemos dos roles el maestro y el estudiante
+
+maestro tiene que logearse.. y en el logueo le redireccionamos a una parte donde ve las preguntas las respuestas y las puede modificar añadir etc.... desde front y lo cambiamos todo en mongo
+
+.... primero vamos  a hacer el crud de preguntas y respuestas para modificar y luego el resto-

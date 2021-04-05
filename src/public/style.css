@@ -1,0 +1,53 @@
+body{
+    background-color: rgb(191, 191, 226);
+}
+
+.containter{
+    border-style: double;
+}
+
+.pregunta{
+    border-style: groove;
+    border: black, 3px ;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+   border: none;
+   justify-content: left;
+   
+   width: 100%;
+   height: 100%;
+    
+}
+.title{
+    align-self: center;
+
+}
+
+.modificar {
+    
+    width: fit-content;
+    font-size: 20px;
+    height: fit-content;
+    border-color: black;
+    color: black;
+    background-color: olivedrab;
+}
+.eliminar {
+    
+    width: fit-content;
+    font-size: 20px;
+    height: fit-content;
+    border-color: black;
+    color: black;
+    background-color: rgb(207, 87, 18);
+}
+
+.btnActualizar{
+    width: fit-content;
+    font-size: 20px;
+    height: fit-content;
+    border-color: black;
+    color: black;
+    background-color: rgb(135, 221, 85);
+}
