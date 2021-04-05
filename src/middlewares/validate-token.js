@@ -5,11 +5,6 @@ const moment=require('moment')
 
 // middleware to validate token (rutas protegidas)
 const verifyToken = (req, res, next) => {
-// try {
-//     let id=req.user._id
-//     if(localStorage.getItem(id))
-// } catch (error) {
-// }
 
     console.log(req.headers.authorization+ "cabeceras")
    if(!req.headers.authorization){

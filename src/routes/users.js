@@ -4,12 +4,9 @@ const express= require('express')
 const bcrypt= require('bcryptjs')
 const router = express.Router();
 const User = require('../models/User.js')
-// const passport=require('passport')
-// const jwt=require('jsonwebtoken')
-const jwtS=require('jwt-simple')
-const moment=require('moment')
-//carga de datos
 
+const jwt=require('jsonwebtoken')
+//carga de datos
 // const password="prueba";
 // const email="celia@hotmail.com";
 // const newUser =new User({email, password})
@@ -35,16 +32,19 @@ function hashEqual(password, user, res) {
 
 }
 function createToken(user,res){
-        let payload={
-            sub: user._id,
-            iat:moment().unix,
-            exp:moment().add(2, 'hours').unix()
-        };
-     let token=jwtS.encode(payload, process.env.SECRET_TOKEN)
-     res.headers({token:token})  
-        // localStorage.setItem(user._id, token)
 
+token=jwt.sign({ user }, process.env.SECRET_TOKEN, (err,token)=>{
+           if(err) res.status(400).send("error al crear secret")
+           console.log("este es el token generado "+token)
+           
+           res.header('auth-token', token).json({
+            error: null,
+            data: {token}
+        })
+
+       });
 }
+
 router.post('/singin', (req, res,next) => {
   
    email = req.body.email
@@ -62,7 +62,6 @@ router.post('/singin', (req, res,next) => {
        .then(user => hashEqual(password, user,res))
  
        .then (user=>{  createToken(user,res) })
-       
        .catch(err => {
            res.status(500).send({ err });
        })

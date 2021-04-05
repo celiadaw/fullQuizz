@@ -2,8 +2,8 @@
 const express= require('express')
 // const Question = require('../models/question.js')
 const router = express.Router();
-const zonaAdminRoutes = require('../middlewares/zonaAdmin');
-const verifyToken = require('../middlewares/validate-token');
+const  verifyToken=require('../middlewares/validate-token');
+
 //en un paso:
 //const route = require('express').Router();
 const Question = require('../models/question.js')
@@ -21,7 +21,8 @@ router.get('/read',verifyToken,(req,res)=>{
 
     
 })
-router.get('/read/:id',(req,res)=>{
+
+router.get('/read/:id',verifyToken,(req,res)=>{
    let id=req.params.id
   Question.findById(id,(err,questions)=>{
       if(err) return res.status(500).send({message:'error en la peticion'})
@@ -35,7 +36,7 @@ router.get('/read/:id',(req,res)=>{
 })
 
 
-router.post('/create', async (req,res)=>{
+router.post('/create', verifyToken, async (req,res)=>{
 
   let question = new Question();
       question.title =req.body.title
@@ -50,7 +51,7 @@ router.post('/create', async (req,res)=>{
   
 })
 
-router.put('/update/:id', (req,res)=>{
+router.put('/update/:id',verifyToken, (req,res)=>{
     let id = req.params.id;
     console.log(id)
     let update=req.body;
@@ -68,7 +69,7 @@ router.put('/update/:id', (req,res)=>{
 
 })
 
-router.delete('/delete/:id',(req,res)=>{
+router.delete('/delete/:id',verifyToken,(req,res)=>{
     let id = req.params.id;
     Question.findByIdAndDelete(id, (err, question)=> {
       if (err) return console.error(err);
